@@ -29,10 +29,10 @@ app.get('/api/persons', (request, response) => {
     response.json(persons)
   })
 
-//   app.get('/api/info', (request, response) => {
-//     var time = new Date();
-//     response.json(`Phonebook has ${persons.length} people ${time}`)
-//   })
+  app.get('/api/info', (request, response) => {
+    var time = new Date();
+    response.json(`Phonebook has ${persons.length} people ${time}`)
+  })
 
 const PORT = 3001
 app.listen(PORT)
