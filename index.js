@@ -4,6 +4,8 @@ const cors = require('cors')
 const morgan = require('morgan')
   morgan.token('body', (req, res) => JSON.stringify(req.body));
 
+const mongoose = require('mongoose')
+
 app.use(express.static('build'))
 app.use(express.json())
 app.use(cors())
@@ -32,9 +34,24 @@ let persons = [
     }
 ]
 
+const yourpassword = process.argv[2]
+const url =
+    `mongodb+srv://fullstack:${yourpassword}@cluster0.6nuls.mongodb.net/person-app?retryWrites=true&w=majority`
+
+mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
+
+const personSchema = new mongoose.Schema({
+    name: String,
+    number: Number
+    })
+
+const Person = mongoose.model('Person', personSchema)
+
 
 app.get('/api/persons', (request, response) => {
+  Person.find({}).then(persons => {
     response.json(persons)
+  })
   })
 
   app.get('/api/info', (request, response) => {
