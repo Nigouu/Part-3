@@ -119,7 +119,7 @@ app.put('/api/persons/:id', (request, response, next) => {
     })
     person
       .save()
-      .then(savedNote => savedNote.toJSON())
+      .then(savedPerson => savedPerson.toJSON())
       .then(savedAndFormattedPerson => {
         response.json(savedAndFormattedPerson)
       }) 
