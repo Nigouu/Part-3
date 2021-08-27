@@ -62,8 +62,6 @@ app.get('/api/persons', (request, response) => {
       var time = new Date();
       response.json(`Phonebook has ${persons.length} people ${time}`)
     })
-    // var time = new Date();
-    // response.json(`Phonebook has ${person.length} people ${time}`)
   })
 
 
